@@ -1,0 +1,45 @@
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+
+  <md-sidenav #sidenav mode="side" class="app-sidenav" >
+    <md-toolbar color="primary" >
+	    	<h3>
+        		<span>Email App</span>
+      		</h3>
+	    </md-toolbar>
+      <div *ngIf="userLoggedIn">
+	      <table>
+          <tr *ngFor="let pageLink of pageLinks;">
+            <td>
+              <button md-button class="app-sidenav-links" [routerLink]="[pageLink.url]">{{pageLink.label}}</button>
+            </td>
+          </tr>
+        </table>	       
+    	</div> 
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()" *ngIf="userLoggedIn">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button> 
+      Email App
+    <span class="app-toolbar-filler"></span>
+    <button md-button md-raised-button color="primary" md-tooltip="Login" [routerLink]="['/appLogin']" routerLinkActive="active" *ngIf="!userLoggedIn">Login</button>
+    
+    <div *ngIf="userLoggedIn">
+      <button md-button [md-menu-trigger-for]="menu" md-raised-button color="primary" *ngIf="userLoggedIn">
+        <md-icon>person</md-icon>
+        {{user.loggedInUserName}}
+      </button>
+    </div>
+    <md-menu #menu="mdMenu" >
+      <button md-menu-item>Preferences</button>
+      <button md-menu-item md-tooltip="Logout" (click)="logout()">Logout</button>
+    </md-menu>
+
+  </md-toolbar>
+
+  <div class="app-content" >
+    <router-outlet ></router-outlet>
+  </div>
+
+</md-sidenav-layout>
