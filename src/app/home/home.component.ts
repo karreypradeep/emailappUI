@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   private _pageLinks: PageLink[];
   private _user: User;
 
-  constructor(private router: Router) {   
+  constructor(private router: Router) {    
   }
 
   ngOnInit() {
@@ -32,7 +32,23 @@ export class HomeComponent implements OnInit {
 
 
   get pageLinks(): PageLink[] {
-    this._pageLinks = JSON.parse(sessionStorage.getItem('pageLinks'));
+this._pageLinks = [];
+    let pageLink   = new PageLink();
+    pageLink.label = "CONTACTS";
+    pageLink.url = "contacts";
+    this._pageLinks.push(pageLink);
+
+    pageLink   = new PageLink();
+    pageLink.label = "GROUPS";
+    pageLink.url = "groups";
+    this._pageLinks.push(pageLink);
+
+    pageLink   = new PageLink();
+    pageLink.label = "SEND_EMAILS";
+    pageLink.url = "send_emails";
+    this._pageLinks.push(pageLink);  
+    //this._pageLinks = JSON.parse(sessionStorage.getItem('pageLinks'));
+    //console.log(this._pageLinks);
     return this._pageLinks;
   }
 

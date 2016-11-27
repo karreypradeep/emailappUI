@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserRoleService } from "./user-role.service";
 
 @Component({
   selector: 'app-user-role',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRoleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userRoleService: UserRoleService) { }
 
   ngOnInit() {
+    this.getAuthoritiesByModule();
   }
+
+getAuthoritiesByModule() {
+    this.userRoleService.getAuthoritiesByModule()
+            .subscribe((authorities) => {
+                  console.log(authorities);
+            },
+            error => {
+                
+            });
+  };
 
 }
