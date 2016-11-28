@@ -10,7 +10,9 @@ import './rxjs-extensions';
 import 'rxjs/Rx';
 import { DefaultComponent } from './default/default.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CommonModule } from '@angular/common';
 import { SecurityModule } from './security/security.module';
+import { EmailModule } from './email/email.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { SecurityModule } from './security/security.module';
     HttpModule,JsonpModule,
     MaterialModule.forRoot(),
     EmailAppRoutingModule,
-    SecurityModule
+    SecurityModule,
+    EmailModule
   ],
   providers: [],
   bootstrap: [AppComponent]

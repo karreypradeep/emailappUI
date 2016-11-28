@@ -1,0 +1,57 @@
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+
+<form #emailForm="ngForm" *ngIf="active">
+
+    <div class="panel panel-default">
+        <div class="col-md-5"></div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Email Campaign</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="groups">Groups*</label> 
+                        <p-multiSelect required id="groups" name="emailGroups" [options]="commonService.groupItems" [(ngModel)]="selectedGroups" [style]="{'width':'100%'}"
+                            #emailGroups="ngModel"></p-multiSelect>
+                        <div [hidden]="emailGroups.valid || emailGroups.pristine" class="alert alert-danger">
+                            Group is required
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="subject">Subject*</label>
+                        <input type="text" placeholder="Required" class="form-control" id="subject" required [(ngModel)]="emailVO.subject" name="subject"
+                            #subject="ngModel">
+                        <div [hidden]="subject.valid || subject.pristine" class="alert alert-danger">
+                            Subject is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="message">Message*</label>
+                    <textarea class="form-control" placeholder="Required" rows="10" id="message" required name="message" [(ngModel)]="emailVO.message"
+                        #message="ngModel"></textarea>
+                    <div [hidden]="message.valid || message.pristine" class="alert alert-danger">
+                        Message is required
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" pButton icon="fa-check" (click)="showDialog()" label="Send" [disabled]="!emailForm.form.valid"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog header="Sending Mail..." [(visible)]="emailSending" modal="modal" (onAfterShow)="sendEmail()" minWidth="200px">
+    </p-dialog>
+
+</form>
