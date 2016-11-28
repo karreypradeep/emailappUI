@@ -13,7 +13,7 @@
                         name="groupNameSearchCriteria">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6">               
                 <button type="submit" pButton icon="fa fa-search" pButton label="Search" (click)="commonService.searchGroupsByCriteria()"></button>
                 <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetGroupsBySearchCriteria()"></button>
             </div>
@@ -76,6 +76,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    <div class="col-md-5"></div>
                     <button *ngIf="!updateGroup" type="button" pButton icon="fa-pencil" (click)="updateGroupClick()" label="Edit"></button>
                     <button *ngIf="!updateGroup" [disabled]="groupSelected.contactCount > 0" type="submit" pButton icon="fa-trash" (click)="deleteSelectedGroup()"
                         label="Delete"></button>
@@ -116,6 +117,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    <div class="col-md-5"></div>
                     <button type="submit" pButton icon="fa-check" (click)="createGroupSubmit()" label="Create" [disabled]="!groupForm.form.valid"></button>
                     <button type="button" pButton icon="fa-close" (click)="createDialogCancelClick()" label="Cancel"></button>
                 </div>

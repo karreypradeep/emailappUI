@@ -1,36 +1,40 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers } from "@angular/http";
-import { ContactGroup } from "./contactgroup";
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { EmailServer } from "./emailserver";
 
 @Injectable()
-export class ContactGroupService {
+export class EmailServerService {
 
-    private contactgroupUrl = "contactgroups";
+    private emailServerURL = "http://localhost:8080/emailServer";
 
     constructor(private http: Http) { }
 
-    getAllContactGroups(): Observable<ContactGroup[]> {
-        return this.http.get(this.contactgroupUrl)
-            .map(res => res.json())
+    getAllEmailServers(): Observable<EmailServer[]> {
+        return this.http.get(this.emailServerURL)
+            .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    updateContactGroup(contactGroup: ContactGroup) {
+    createEmailServer(emailServer: EmailServer): Observable<EmailServer> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.put(this.contactgroupUrl, JSON.stringify(contactGroup), { headers: headers })
+        return this.http.post(this.emailServerURL, JSON.stringify(emailServer), { headers: headers })
             .map((res: Response) => { return; })
             .catch(this.handleError);
     }
 
-    deleteContactGroup(contactGroup: ContactGroup): Observable<void> {
+    deleteEmailServer(objectId: number): Observable<void> {
+        return this.http.delete(this.emailServerURL + "/" + objectId)
+            .map((res: Response) => { return; })
+            .catch(this.handleError);
+    }
+
+    updateEmailServerSubmit(emailServer: EmailServer) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.delete(this.contactgroupUrl + "/" + contactGroup.contact.id + "/" + contactGroup.group.id, { headers: headers })
-            .map((res: Response) => { return; })
+        return this.http.put(this.emailServerURL + "/" + emailServer.id, JSON.stringify(emailServer), { headers: headers })
+            .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 

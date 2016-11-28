@@ -4,9 +4,7 @@
 
     <div class="panel panel-default" *ngIf="!displayViewDialog && !displayCreateDialog">
         <div class="panel-heading">
-            <center>
-                <h3 class="panel-title">Search Contacts</h3>
-            </center>
+            <h3 class="panel-title">Search Contacts</h3>
         </div>
         <div class="panel-body">
             <div class="col-md-6">
@@ -23,7 +21,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" id="email" [(ngModel)]="commonService.contactSearchCriteria.email"
+                    <input type="email" placeholder="Email" class="form-control" id="email" [(ngModel)]="commonService.contactSearchCriteria.email"
                         name="emailSearchCriteria">
                 </div>
             </div>
@@ -37,12 +35,11 @@
                     </div>
                 </div>
             </div>
-            <center>
-                <div class="col-md-12">
-                    <button type="submit" [disabled]="!contactForm.form.valid" pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria()"></button>
-                    <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetContactsBySearchCriteria()"></button>
-                </div>
-            </center>
+            <div class="col-md-12">
+                <div class="col-md-5"></div>
+                <button type="submit" [disabled]="!contactForm.form.valid" pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria()"></button>
+                <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetContactsBySearchCriteria()"></button>
+            </div>
         </div>
     </div>
 
@@ -56,21 +53,16 @@
         <footer>
             <div class="row">
                 <div class="col-md-12">
-                    <center>
-                        <button type="button" icon="fa fa-plus" pButton label="Create" (click)="createContactClick()"></button>
-                        <button type="button" pButton icon="fa fa-download" label="Import"></button>
-                    </center>
+                    <button type="button" icon="fa fa-plus" pButton label="Create" (click)="createContactClick()"></button>
+                    <button type="button" pButton icon="fa fa-download" label="Import"></button>
                 </div>
             </div>
         </footer>
     </p-dataTable>
 
-    <!-- <p-dialog [(visible)]="displayViewDialog" [responsive]="true" showEffect="fade" [modal]="true" *ngIf="contactSelected" [width]="1000"> -->
     <div class="panel panel-default" *ngIf="displayViewDialog && contactSelected">
         <div class="panel-heading">
-            <center>
-                <h3 class="panel-title">Contact Details</h3>
-            </center>
+            <h3 class="panel-title">Contact Details</h3>
         </div>
 
         <div class="panel-body">
@@ -121,9 +113,17 @@
                     </div>
                 </div>
                 <div class="col-md-6" *ngIf="updateContact && moreGroupItems.length > 0">
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="!updateContact">
                         <label for="groups">Groups</label>
                         <p-multiSelect id="groups" name="groups" [options]="moreGroupItems" [(ngModel)]="contactSelected.moreGroups" [style]="{'width':'100%'}"></p-multiSelect>
+                    </div>
+                    <div class="form-group" *ngIf="updateContact">
+                        <label for="groups">Groups*</label>
+                        <p-multiSelect id="groups" required name="groupsView" #groupsView="ngModel" [options]="moreGroupItems" [(ngModel)]="contactSelected.moreGroups"
+                            [style]="{'width':'100%'}"></p-multiSelect>
+                        <div [hidden]="groupsView.valid || groupsView.pristine" class="alert alert-danger">
+                            Group is invalid
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,11 +136,10 @@
             <br/>
             <div class="row">
                 <div class="col-md-12">
-                    <center>
-                        <button *ngIf="!updateContact" type="button" pButton icon="fa-pencil" (click)="updateContactClick()" label="Edit"></button>
-                        <button *ngIf="!updateContact" type="submit" pButton icon="fa-trash" (click)="deleteSelectedContact()" label="Delete"></button>
-                        <button *ngIf="!updateContact" type="button" pButton icon="fa-close" (click)="viewDialogCancelClick()" label="Cancel"></button>
-                    </center>
+                    <div class="col-md-5"></div>
+                    <button *ngIf="!updateContact" type="button" pButton icon="fa-pencil" (click)="updateContactClick()" label="Edit"></button>
+                    <button *ngIf="!updateContact" type="submit" pButton icon="fa-trash" (click)="deleteSelectedContact()" label="Delete"></button>
+                    <button *ngIf="!updateContact" type="button" pButton icon="fa-close" (click)="viewDialogCancelClick()" label="Cancel"></button>
                 </div>
             </div>
             <div class="panel panel-default" *ngIf="updateContact && contactSelected.contactGroups.length > 0">
@@ -168,22 +167,17 @@
             <br/>
             <div class="row">
                 <div class="col-md-12">
-                    <center>
-                        <button *ngIf="updateContact" type="submit" pButton icon="fa-check" (click)="updateContactSubmit()" label="Submit" [disabled]="!contactForm.form.valid"></button>
-                        <button *ngIf="updateContact" type="button" pButton icon="fa-close" (click)="dialogUpdateCancelClick()" label="Cancel"></button>
-                    </center>
+                    <div class="col-md-5"></div>
+                    <button *ngIf="updateContact" type="submit" pButton icon="fa-check" (click)="updateContactSubmit()" label="Submit" [disabled]="!contactForm.form.valid"></button>
+                    <button *ngIf="updateContact" type="button" pButton icon="fa-close" (click)="dialogUpdateCancelClick()" label="Cancel"></button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- </p-dialog> -->
 
-    <!-- <p-dialog [(visible)]="displayCreateDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="1000" *ngIf="contactNew"> -->
     <div class="panel panel-default" *ngIf="displayCreateDialog && contactNew">
         <div class="panel-heading">
-            <center>
-                <h3 class="panel-title">Create Contact</h3>
-            </center>
+            <h3 class="panel-title">Create Contact</h3>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -222,22 +216,24 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="groups">Groups</label>
-                        <p-multiSelect id="groups" name="groups" [options]="commonService.groupItems" [(ngModel)]="contactNew.groups" [style]="{'width':'100%'}"></p-multiSelect>
+                        <label for="groups">Groups*</label>
+                        <p-multiSelect id="groups" required name="groupsCreate" #groupsCreate="ngModel" [options]="commonService.groupItems" [(ngModel)]="contactNew.groups"
+                            [style]="{'width':'100%'}"></p-multiSelect>
+                        <div [hidden]="groupsCreate.valid || groupsCreate.pristine" class="alert alert-danger">
+                            Group is invalid
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <center>
-                    <button type="submit" pButton icon="fa-check" (click)="createContactSubmit()" label="Create" [disabled]="!contactForm.form.valid"></button>
-                    <button type="button" pButton icon="fa-close" (click)="createDialogCancelClick()" label="Cancel"></button>
-                </center>
+                <div class="col-md-5"></div>
+                <button type="submit" pButton icon="fa-check" (click)="createContactSubmit()" label="Create" [disabled]="!contactForm.form.valid"></button>
+                <button type="button" pButton icon="fa-close" (click)="createDialogCancelClick()" label="Cancel"></button>
             </div>
         </div>
         <br/>
     </div>
-    <!--  </p-dialog> -->
 
 </form>

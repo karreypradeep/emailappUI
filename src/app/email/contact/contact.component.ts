@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ContactService } from "./contact.service";
 import { Contact } from "./contact";
-import { DataTable, Column, Button, Header, Footer, Dialog, SelectItem, MultiSelect, Panel, Growl} from "primeng/primeng";
+import { SelectItem } from "primeng/primeng";
 import { Message } from "../../message";
 import { ContactGroupService } from "../contactgroup/contactgroup.service";
 import { ContactGroup } from "../contactgroup/contactgroup";
@@ -11,10 +11,8 @@ import { CommonService } from "../shared/common.service";
 import { ContactSearchCriteria } from "../contact/contact_search_criteria";
 
 @Component({
-    selector: "my-contact",
-    templateUrl: "app/contact/contact.component.html",
-    styleUrls: ["app/contact/contact.component.css"],
-    directives: [DataTable, Column, Button, Header, Footer, Dialog, MultiSelect, Panel, Growl]
+    templateUrl: "./contact.component.html",
+    styleUrls: ["./contact.component.css"]
 })
 export class ContactComponent implements OnInit {
 
