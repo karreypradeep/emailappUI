@@ -1,33 +1,33 @@
 <form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #loginForm="ngForm">
-   <span class="app-toolbar-filler"></span>
-  <div style="width:30%">
-  <md-card >
-    <md-card-title>Login</md-card-title>
-    <md-card-content>
-      <table  cellspacing="0" >
-        <tr>
-          <td>
-            <md-input placeholder="User name"  required [(ngModel)]="username" name="username" >
-              <span md-prefix>
+  <div style="width:30%" class="centered">
+    <md-card>
+      <md-card-title>Login</md-card-title>
+      <md-card-content>
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <md-input placeholder="User name" required [(ngModel)]="username" name="username">
+                <span md-prefix>
                 <i class="material-icons app-input-icon">person</i>
               </span>
-            </md-input>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <md-input placeholder="Password"   required type="password" [(ngModel)]="password" name="password" >
-              <span md-prefix>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Password" required type="password" [(ngModel)]="password" name="password">
+                <span md-prefix>
                 <i class="material-icons app-input-icon">person</i>
               </span>
-            </md-input>
-          </td>
-        </tr>
-      </table>
-    </md-card-content>
-    <md-card-actions>
-      <button md-button type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
-    </md-card-actions>
-  </md-card>
+              </md-input>
+            </td>
+          </tr>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
+        <button md-button md-raised-button color="primary">Register</button>
+      </md-card-actions>
+    </md-card>
   </div>
 </form>
