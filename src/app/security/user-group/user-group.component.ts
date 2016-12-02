@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user-group',
-  templateUrl: './user-group.component.html',
-  styleUrls: ['./user-group.component.css']
+  selector: 'user-group',
+  templateUrl: './user-group.component.html'
 })
 export class UserGroupComponent implements OnInit {
 

@@ -1,10 +1,6 @@
-export class Group {
-    id: number;
-    version: number;
-    lastUpdatedDate: any;
-    lastUpdatedUser: any;
-    creationDate: any;
-    createdUser: any;
+import {BaseEntity} from '../../core/model/base.entity'
+
+export class Group   extends BaseEntity{
     name: string;
     comments: string;
     contactCount: number;

@@ -29,6 +29,13 @@ export class LoginService {
          .map(res => res.json()).catch(this.handleError);;     
   }
 
+logout ():  Observable<User>  {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get('user/logout').catch(this.handleError);  
+  }
+
  pageLinksAllowedForUser ():  Observable<PageLink>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

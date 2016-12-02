@@ -1,3 +1,84 @@
-<p>
-  user-role works!
-</p>
+<div *ngIf="!displayUserRoleDetails">
+  <md-card>
+    <md-card-title color="primary">Search User Roles</md-card-title>
+    <md-card-content>
+      <md-input placeholder="Name" [(ngModel)]="userSearchCriteria.name" class="col-md-5"></md-input>
+      <div class="col-md-2"></div>
+      <md-input placeholder="Description" [(ngModel)]="userSearchCriteria.description" class="col-md-5"></md-input>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="searchUserRoles()">Search</button>
+      <button md-raised-button color="primary" (click)="resetGroupsBySearchCriteria()">Reset</button>
+    </md-card-actions>
+  </md-card>
+  <br>
+  <br>
+  <p-dataTable [value]="userRoles" selectionMode="single" [responsive]="true" (onRowSelect)="onRowSelect($event)">
+    <header>User Roles</header>
+    <p-column field="roleName" header="Name" [sortable]="true" [filter]="true"></p-column>
+    <p-column field="description" header="Description" [sortable]="true" [filter]="true"></p-column>
+    <footer>
+      <div class="row">
+        <div class="col-md-12">
+          <button md-raised-button color="primary" (click)="createUserRole()">Create</button>
+          <button md-raised-button color="primary">Import</button>
+        </div>
+      </div>
+    </footer>
+  </p-dataTable>
+</div>
+<div *ngIf="displayUserRoleDetails">
+  <md-card>
+    <md-card-title color="primary">Create User Role</md-card-title>
+    <md-card-content>
+      <div>
+        <md-input placeholder="Name" [(ngModel)]="selectedUserRole.roleName" class="col-md-5"></md-input>
+        <div class="col-md-2"></div>
+        <md-input placeholder="Description" [(ngModel)]="selectedUserRole.description" class="col-md-5"></md-input>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <p-panel *ngFor="let authorityByModule of authoritiesByModule;" [toggleable]="true">
+          <header>
+            {{authorityByModule.moduleName}}
+          </header>
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th class="text-center">Grant</th>
+                <th class="text-center">View</th>
+                <th class="text-center">Create</th>
+                <th class="text-center">Update</th>
+                <th class="text-center">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let authority of authorityByModule.authorityResources;">
+                <td class="text-center">{{authority.authorityConstant}}</td>
+                <td class="text-center">
+                  <input type="checkbox" *ngIf="authority.viewGrant"  style="width: 20px; height: 20px; cursor: pointer;" (click)="toggleUserRoleAuthority(authority.viewGrant)" [checked]="existsUserRoleAuthority(authority.viewGrant)">
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" *ngIf="authority.createGrant"  style="width: 20px; height: 20px; cursor: pointer;" (click)="toggleUserRoleAuthority(authority.createGrant)" [checked]="existsUserRoleAuthority(authority.createGrant)">
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" *ngIf="authority.updateGrant"  style="width: 20px; height: 20px; cursor: pointer;" (click)="toggleUserRoleAuthority(authority.updateGrant)" [checked]="existsUserRoleAuthority(authority.updateGrant)">
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" *ngIf="authority.deleteGrant"  style="width: 20px; height: 20px; cursor: pointer;" (click)="toggleUserRoleAuthority(authority.deleteGrant)" [checked]="existsUserRoleAuthority(authority.deleteGrant)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </p-panel>
+      </div>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="submitNewUserRole()">Submit</button>
+      <button md-raised-button color="primary" (click)="backToUserRoles()">Back</button>
+    </md-card-actions>
+  </md-card>
+</div>

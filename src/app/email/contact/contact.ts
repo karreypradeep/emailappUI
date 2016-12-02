@@ -1,13 +1,8 @@
 import { ContactGroup } from "../contactgroup/contactgroup";
 import { Group } from "../group/group";
+import {BaseEntity} from '../../core/model/base.entity'
 
-export class Contact {
-    id: number;
-    version: number;
-    lastUpdatedDate: any;
-    lastUpdatedUser: any;
-    creationDate: any;
-    createdUser: any;
+export class Contact  extends BaseEntity{
     firstName: string;
     lastName: string;
     email: string;

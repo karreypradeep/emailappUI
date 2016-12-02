@@ -1,12 +1,12 @@
 <md-sidenav-layout [class.m2app-dark]="isDarkTheme">
 
-  <md-sidenav #sidenav mode="side" class="app-sidenav">
+  <md-sidenav #sidenav mode="side" class="app-sidenav" [opened]="userLoggedIn">
     <md-toolbar color="primary">
       <h3>
         <span>Email App</span>
       </h3>
     </md-toolbar>
-    <table *ngIf="userLoggedIn">
+    <table >
       <tr>
         <td>
            <button md-button [routerLink]="['dashboard']" routerLinkActive="active">Dashboard</button>
@@ -61,10 +61,10 @@
     <div *ngIf="userLoggedIn">
       <button md-button [md-menu-trigger-for]="menu" md-raised-button color="primary" *ngIf="userLoggedIn">
         <md-icon>person</md-icon>
-        {{user.loggedInUserName}}
+        
       </button>
     </div>
-    <md-menu #menu="mdMenu">
+    <md-menu #menu="mdMenu" >
       <button md-menu-item>Preferences</button>
       <button md-menu-item md-tooltip="Logout" (click)="logout()">Logout</button>
     </md-menu>
