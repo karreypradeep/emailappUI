@@ -1,3 +1,61 @@
-<p>
-  user-group works!
-</p>
+<p-growl [value]="msgs"></p-growl>
+<div *ngIf="!displayUserGroupDetails">
+  <md-card>
+    <md-card-title color="primary">Search User Groups</md-card-title>
+    <md-card-content>
+      <md-input placeholder="Name" [(ngModel)]="userGroupSearchCriteria.groupName" class="col-md-5"></md-input>
+      <div class="col-md-2"></div>
+      <md-input placeholder="Description" [(ngModel)]="userGroupSearchCriteria.description" class="col-md-5"></md-input>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="searchUserGroups()">Search</button>
+      <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
+    </md-card-actions>
+  </md-card>
+  <br>
+  <br>
+  <p-dataTable [value]="userGroups" selectionMode="single" [responsive]="true" (onRowSelect)="onRowSelect($event)">
+    <header>User Groups</header>
+    <p-column field="groupName" header="Name" [sortable]="true" [filter]="true"></p-column>
+    <p-column field="description" header="Description" [sortable]="true" [filter]="true"></p-column>
+    <footer>
+      <div class="row">
+        <div class="col-md-12">
+          <button md-raised-button color="primary" (click)="createUserGroup()">Create</button>
+          <button md-raised-button color="primary">Import</button>
+        </div>
+      </div>
+    </footer>
+  </p-dataTable>
+</div>
+<div *ngIf="displayUserGroupDetails">
+  <md-card>
+    <md-card-title color="primary">Create User Group</md-card-title>
+    <md-card-content>
+      <div>
+        <md-input placeholder="Name" [(ngModel)]="selectedUserGroup.groupName" class="col-md-5"></md-input>
+        <div class="col-md-2"></div>
+        <md-input placeholder="Description" [(ngModel)]="selectedUserGroup.description" class="col-md-5"></md-input>
+      </div>
+      <br>
+      <br>
+      <div>
+        <p-pickList [source]="sourceUserGroupUserRoles" [target]="targetUserGroupUserRoles" sourceHeader="Available Roles" targetHeader="Selected Roles"
+          [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+          <template let-userGroupUserRole>
+            <div class="ui-helper-clearfix">
+              <div style="font-size:14px;float:center;margin:15px 5px 0 0">{{userGroupUserRole.userRole.roleName}}</div>
+            </div>
+          </template>
+        </p-pickList>
+      </div>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="submitNewUserGroup()">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserGroup()">Delete</button>
+      <button md-raised-button color="primary" (click)="backToUserGroups()">Back</button>
+    </md-card-actions>
+  </md-card>
+
+
+</div>

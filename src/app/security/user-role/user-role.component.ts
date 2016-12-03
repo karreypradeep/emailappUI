@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from "./user-role.service";
 import { AuthoritiesByModuleResource } from "../model/authorities.by.module";
 import { UserRole } from '../model/user.role';
-import { UserSearchCriteria } from '../model/user.search.criteria';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UserRoleSearchCriteria } from '../model/user.role.search.criteria';
 import { Message } from 'primeng/primeng';
 
 @Component({
@@ -14,14 +13,14 @@ export class UserRoleComponent implements OnInit {
 
   private userRoles: UserRole[];
   private selectedUserRole: UserRole;
-  private userSearchCriteria: UserSearchCriteria = new UserSearchCriteria();
+  private userRoleSearchCriteria: UserRoleSearchCriteria = new UserRoleSearchCriteria();
   private displayUserRoleDetails: boolean;
   private authoritiesByModule: AuthoritiesByModuleResource[] = [];
   private userRoleAuthorities: string[] = [];
   private updateUserRole: boolean;
-    msgs: Message[] = [];
+  msgs: Message[] = [];
 
-  constructor(private userRoleService: UserRoleService, private router: Router) { }
+  constructor(private userRoleService: UserRoleService) { }
 
   ngOnInit() {
     this.getAuthoritiesByModule();
@@ -40,13 +39,17 @@ export class UserRoleComponent implements OnInit {
 
 
   searchUserRoles() {
-    this.userRoleService.getUserRoles(this.userSearchCriteria)
+    this.userRoleService.getUserRoles(this.userRoleSearchCriteria)
       .subscribe((userRoles) => {
         this.userRoles = userRoles;
       },
       error => {
 
       });
+  };
+
+  resetSearchCriteria() {
+     this.userRoleSearchCriteria  = new UserRoleSearchCriteria();
   };
 
   createUserRole() {

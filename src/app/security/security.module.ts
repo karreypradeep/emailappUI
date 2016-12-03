@@ -12,7 +12,7 @@ import { UserAccountService } from './user-account/user-account.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { DataTableModule, SharedModule, GrowlModule, Message, 
-         ButtonModule, Header, Footer, DialogModule, SelectItem,
+         ButtonModule, Header, Footer, DialogModule, SelectItem, PickListModule,
          PanelModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule} from 'primeng/primeng';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { DataTableModule, SharedModule, GrowlModule, Message,
     CommonModule,
     FormsModule,HttpModule,JsonpModule,
     MaterialModule.forRoot(),
-    DataTableModule, ButtonModule, 
+    DataTableModule, ButtonModule, PickListModule,
     DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule
   ],
   providers: [UserRoleService,LoginService,UserGroupService,UserAccountService],

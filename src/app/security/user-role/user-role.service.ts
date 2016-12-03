@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import {AuthoritiesByModuleResource} from '../model/authorities.by.module'
 import {UserRole} from '../model/user.role';
-import{UserSearchCriteria} from '../model/user.search.criteria';
+import{UserRoleSearchCriteria} from '../model/user.role.search.criteria';
 
 @Injectable()
 export class UserRoleService {
@@ -18,11 +18,11 @@ getAuthoritiesByModule ():  Observable<AuthoritiesByModuleResource[]>  {
          .map(res => res.json()).catch(this.handleError);;     
   }
 
-getUserRoles (userSearchCriteria: UserSearchCriteria):  Observable<UserRole[]>  {
+getUserRoles (userRoleSearchCriteria: UserRoleSearchCriteria):  Observable<UserRole[]>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Access-Control-Allow-Origin', '*');      
-        return this.http.post('userRoles/search', JSON.stringify(userSearchCriteria), { headers: headers })
+        return this.http.post('userRoles/search', JSON.stringify(userRoleSearchCriteria), { headers: headers })
             .map(res => res.json())
             .catch(this.handleError);   
   }

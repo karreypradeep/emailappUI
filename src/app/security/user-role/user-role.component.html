@@ -3,13 +3,13 @@
   <md-card>
     <md-card-title color="primary">Search User Roles</md-card-title>
     <md-card-content>
-      <md-input placeholder="Name" [(ngModel)]="userSearchCriteria.name" class="col-md-5"></md-input>
+      <md-input placeholder="Name" [(ngModel)]="userRoleSearchCriteria.roleName" class="col-md-5"></md-input>
       <div class="col-md-2"></div>
-      <md-input placeholder="Description" [(ngModel)]="userSearchCriteria.description" class="col-md-5"></md-input>
+      <md-input placeholder="Description" [(ngModel)]="userRoleSearchCriteria.description" class="col-md-5"></md-input>
     </md-card-content>
     <md-card-actions class="center">
       <button md-raised-button color="primary" (click)="searchUserRoles()">Search</button>
-      <button md-raised-button color="primary" (click)="resetGroupsBySearchCriteria()">Reset</button>
+      <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
     </md-card-actions>
   </md-card>
   <br>
