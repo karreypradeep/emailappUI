@@ -58,7 +58,7 @@ export class GroupComponent {
                 this.msgs.push({ severity: "info", summary: "Group created successfully.", detail: "" });
             },
             error => {
-                this.msgs.push({ severity: "error", summary: "Group creation failed.", detail: error })
+                this.msgs.push({ severity: "error", summary: "Group creation failed.", detail: error });
             });
     }
 

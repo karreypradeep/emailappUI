@@ -40,20 +40,29 @@ createUserRole (userRole: UserRole):  Observable<UserRole>  {
         headers.append('Content-Type', 'application/json');
         headers.append('Access-Control-Allow-Origin', '*');      
         return this.http.post('userRoles', JSON.stringify(userRole), { headers: headers })
-            .map(res => res.json())
+            .map((res: Response)  => { return; })
             .catch(this.handleError);   
   }
+
+deleteUserRoleById(id: number): Observable<UserRole> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.delete('userRoles/' + id)
+            .map((res: Response)  => { return; })
+            .catch(this.handleError);
+} 
 
 updateUserRole (userRole: UserRole):  Observable<UserRole>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.put('userRoles' + "/" + userRole.objectId, JSON.stringify(userRole), { headers: headers })
-            .map((res: Response) => res.json())
+            .map((res: Response)  => { return; })
             .catch(this.handleError);  
   }
 
   private extractData(res: Response) {     
     let body = res.json();
+    console.log('body extractData ' , res);
     return body.data || { };
   }
 

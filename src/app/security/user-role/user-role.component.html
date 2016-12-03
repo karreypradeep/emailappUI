@@ -1,3 +1,4 @@
+<p-growl [value]="msgs"></p-growl>
 <div *ngIf="!displayUserRoleDetails">
   <md-card>
     <md-card-title color="primary">Search User Roles</md-card-title>
@@ -78,6 +79,7 @@
     </md-card-content>
     <md-card-actions class="center">
       <button md-raised-button color="primary" (click)="submitNewUserRole()">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserRole()">Delete</button>
       <button md-raised-button color="primary" (click)="backToUserRoles()">Back</button>
     </md-card-actions>
   </md-card>

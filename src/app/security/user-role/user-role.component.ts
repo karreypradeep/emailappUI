@@ -4,6 +4,7 @@ import { AuthoritiesByModuleResource } from "../model/authorities.by.module";
 import { UserRole } from '../model/user.role';
 import { UserSearchCriteria } from '../model/user.search.criteria';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Message } from 'primeng/primeng';
 
 @Component({
   selector: 'user-role',
@@ -18,6 +19,7 @@ export class UserRoleComponent implements OnInit {
   private authoritiesByModule: AuthoritiesByModuleResource[] = [];
   private userRoleAuthorities: string[] = [];
   private updateUserRole: boolean;
+    msgs: Message[] = [];
 
   constructor(private userRoleService: UserRoleService, private router: Router) { }
 
@@ -62,27 +64,42 @@ export class UserRoleComponent implements OnInit {
   };
 
   submitNewUserRole() {
+    this.msgs = [];
     this.displayUserRoleDetails = false;
     this.selectedUserRole.userRoleAuthorities = this.userRoleAuthorities;
     if (this.updateUserRole) {
       this.userRoleService.updateUserRole(this.selectedUserRole)
-        .subscribe((userRole) => {
+        .subscribe(() => {
           this.searchUserRoles();
+          this.msgs.push({ severity: "info", summary: "User role updated successfully.", detail: "" });
         },
         error => {
-
+          this.msgs.push({ severity: "error", summary: "User role updation failed.", detail: error });
         });
     } else {
       this.userRoleService.createUserRole(this.selectedUserRole)
-        .subscribe((userRole) => {
+        .subscribe(() => {
           this.searchUserRoles();
+          this.msgs.push({ severity: "info", summary: "User role created successfully.", detail: "" });
         },
         error => {
-
+          this.msgs.push({ severity: "error", summary: "User role creation failed.", detail: error });
         });
     }
+  };
 
 
+  deleteNewUserRole() {
+    this.msgs = [];
+    this.displayUserRoleDetails = false;
+    this.userRoleService.deleteUserRoleById(this.selectedUserRole.objectId)
+        .subscribe(() => {
+          this.searchUserRoles();
+          this.msgs.push({ severity: "info", summary: "User role deleted successfully.", detail: "" });
+        },
+        error => {
+          this.msgs.push({ severity: "error", summary: "User role deletion failed.", detail: error });
+        });
   };
 
   getAuthoritiesByModule() {

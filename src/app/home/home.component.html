@@ -61,7 +61,7 @@
     <div *ngIf="userLoggedIn">
       <button md-button [md-menu-trigger-for]="menu" md-raised-button color="primary" *ngIf="userLoggedIn">
         <md-icon>person</md-icon>
-        
+        {{user.loggedInUserName}}
       </button>
     </div>
     <md-menu #menu="mdMenu" >
