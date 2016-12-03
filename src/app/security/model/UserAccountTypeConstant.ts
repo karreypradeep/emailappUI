@@ -1,0 +1,4 @@
+
+export enum UserAccountTypeConstant {
+    ACC_TYPE_SUPER_ADMIN,ACC_TYPE_ADMIN,ACC_TYPE_EMPLOYEE,ACC_TYPE_USER
+}

@@ -10,14 +10,6 @@ export class UserGroupService {
 
   constructor(private http: Http) { }
 
-getAuthoritiesByModule ():  Observable<AuthoritiesByModuleResource[]>  {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-          return this.http.get('enumConstants/authorityConstants')
-         .map(res => res.json()).catch(this.handleError);;     
-  }
-
 getUserGroups (userGroupSearchCriteria: UserGroupSearchCriteria):  Observable<UserGroup[]>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

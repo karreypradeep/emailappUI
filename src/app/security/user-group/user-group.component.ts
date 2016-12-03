@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserGroupService } from "./user-group.service";
 import { UserRoleService } from "../user-role/user-role.service";
-import { AuthoritiesByModuleResource } from "../model/authorities.by.module";
 import { UserGroup } from '../model/user_group';
 import { UserRole } from '../model/user.role';
 import { UserGroupUserRole } from '../model/user_group_user_role';
@@ -132,16 +131,6 @@ export class UserGroupComponent implements OnInit {
       },
       error => {
         this.msgs.push({ severity: "error", summary: "User group deletion failed.", detail: error });
-      });
-  };
-
-  getAuthoritiesByModule() {
-    this.userGroupService.getAuthoritiesByModule()
-      .subscribe((authorities) => {
-
-      },
-      error => {
-
       });
   };
 
