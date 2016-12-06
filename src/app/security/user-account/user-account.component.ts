@@ -85,6 +85,7 @@ export class UserAccountComponent implements OnInit {
 
   createUserAccount() {
     this.selectedUserAccount = new UserAccount();
+    this.targetUserAccountUserGroups = [];
     this.displayUserAccountDetails = true;
     this.updateUserAccount = false;
     this.searchUserGroups();
@@ -96,7 +97,7 @@ export class UserAccountComponent implements OnInit {
     this.updateUserAccount = false;
   };
 
-  submitNewUserGroup() {
+  submitNewUserAccount() {
     this.msgs = [];
     this.displayUserAccountDetails = false;
     this.selectedUserAccount.userAccountUserGroups = this.targetUserAccountUserGroups;

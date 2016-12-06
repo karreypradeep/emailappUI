@@ -11,5 +11,5 @@ export class UserAccount extends BaseEntity{
     accountLocked:boolean;
     userAccountType:UserAccountTypeConstant;
     employeeNumber:string;
-
+    email: string;
 }

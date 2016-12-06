@@ -64,6 +64,9 @@ export class EmailServerComponent implements OnInit {
     }
 
     addEmailServerProperty() {
+        if(!this.emailServerNew.emailServerProperties){
+            this.emailServerNew.emailServerProperties = [];
+        }
         this.emailServerNew.emailServerProperties.push(this.emailServerPropertyNew);
         this.emailServerPropertyNew = new EmailServerProperties();
         this.active2 = false;
@@ -71,6 +74,9 @@ export class EmailServerComponent implements OnInit {
     }
 
     addEmailServerPropertyUpdate() {
+         if(!this.emailServerSelected.emailServerProperties){
+            this.emailServerSelected.emailServerProperties = [];
+        }
         this.emailServerSelected.emailServerProperties.push(this.emailServerPropertyNew);
         this.emailServerPropertyNew = new EmailServerProperties();
         this.active2 = false;
