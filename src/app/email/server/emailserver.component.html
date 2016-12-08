@@ -197,13 +197,13 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<button type="button" pButton icon="fa-check" (click)="addEmailServerPropertyUpdate(emailServerPropertyNew)" label="Add"
+									<button type="button" pButton icon="fa-check" (click)="createEmailServerProperty(emailServerPropertyNew)" label="Add"
 										[disabled]="!emailServerPropertiesUpdateForm.form.valid"></button>
 								</div>
 							</div>
 						</div>
 						<br/>
-						<p-dataTable [value]="emailServerSelected.emailServerProperties" *ngIf="emailServerSelected && emailServerSelected.emailServerProperties && emailServerSelected.emailServerProperties.length > 0"
+						<p-dataTable [value]="emailServerPropertiesForServer" *ngIf="emailServerSelected && emailServerPropertiesForServer && emailServerPropertiesForServer.length > 0"
 							[rows]="50">
 							<header>Email Servers</header>
 							<p-column field="propertyName" header="Name" [sortable]="true" [filter]="true"></p-column>
@@ -211,7 +211,7 @@
 							<p-column field="emailServerPropertyValueTypeConstant" header="Type" [sortable]="true" [filter]="true"></p-column>
 							<p-column styleClass="col-button">
 								<template let-emailServerProperties="rowData" pTemplate type="body">
-									<button type="button" [disabled]="!updateEmailServer" pButton icon="fa-trash" (click)="deleteEmailServerPropertyUpdate(emailServerProperties)"
+									<button type="button" [disabled]="!updateEmailServer" pButton icon="fa-trash" (click)="deleteEmailServerProperty(emailServerProperties)"
 										label="Delete"></button></template>
 							</p-column>
 						</p-dataTable>

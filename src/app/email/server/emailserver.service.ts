@@ -6,7 +6,7 @@ import { EmailServer } from "./emailserver";
 @Injectable()
 export class EmailServerService {
 
-    private emailServerURL = "http://localhost:8080/emailServer";
+    private emailServerURL = "emailServer";
 
     constructor(private http: Http) { }
 
@@ -43,10 +43,10 @@ export class EmailServerService {
         return body || {};
     }
 
-    private handleError(error: any) {
+     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg);
+        //console.error(errMsg);
         return Observable.throw(errMsg);
     }
 

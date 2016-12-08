@@ -5,14 +5,17 @@ import { EmailServer } from "./emailserver";
 import { EmailServerService } from "./emailserver.service";
 import { EmailServerProperties } from "./emailserver.properties";
 import { EmailServerPropertyValueTypeConstant } from "./emailServerPropertyValueTypeConstant";
+import { EmailServerPropertiesService } from "./emailserverproperties.service";
+
 
 @Component({
-    templateUrl: "./emailserver.component.html",
+    templateUrl: "./emailserver.component.html"
 })
 export class EmailServerComponent implements OnInit {
 
     msgs: Message[] = [];
     emailServers: EmailServer[] = [];
+    emailServerPropertiesForServer: EmailServerProperties[] = [];
     emailServerNew: EmailServer;
     emailServerUpdate: EmailServer;
     createEmailServer: boolean;
@@ -25,7 +28,7 @@ export class EmailServerComponent implements OnInit {
     emailServerPropertyTypes: SelectItem[];
     emailServerPropertyNew: EmailServerProperties;
 
-    constructor(private emailServerService: EmailServerService) { }
+    constructor(private emailServerService: EmailServerService, private emailServerPropertiesService: EmailServerPropertiesService) { }
 
     ngOnInit() {
         this.getAllEmailServers();
@@ -45,6 +48,7 @@ export class EmailServerComponent implements OnInit {
         this.emailServerPropertyNew = new EmailServerProperties();
         this.viewEmailServer = true;
         this.active = false;
+        this.getAllEmailServerProperties();
         setTimeout(() => this.active = true, 0);
     }
 
@@ -63,49 +67,43 @@ export class EmailServerComponent implements OnInit {
         setTimeout(() => this.active = true, 0);
     }
 
-    addEmailServerProperty() {
-        if(!this.emailServerNew.emailServerProperties){
-            this.emailServerNew.emailServerProperties = [];
-        }
-        this.emailServerNew.emailServerProperties.push(this.emailServerPropertyNew);
-        this.emailServerPropertyNew = new EmailServerProperties();
-        this.active2 = false;
-        setTimeout(() => this.active2 = true, 0);
+    getAllEmailServerProperties() {
+        this.emailServerPropertiesService.getEmailServerPropertiesByEmailServerId(this.emailServerSelected.id)
+            .subscribe(emailServers => { this.emailServerPropertiesForServer = emailServers; },
+            error => {
+                this.msgs.push({ severity: "error", summary: "Error while retrieving Email Server Property for server.", detail: error })
+            });
     }
 
-    addEmailServerPropertyUpdate() {
-         if(!this.emailServerSelected.emailServerProperties){
-            this.emailServerSelected.emailServerProperties = [];
-        }
-        this.emailServerSelected.emailServerProperties.push(this.emailServerPropertyNew);
-        this.emailServerPropertyNew = new EmailServerProperties();
-        this.active2 = false;
-        setTimeout(() => this.active2 = true, 0);
+
+    createEmailServerProperty() {
+        this.msgs = [];
+        this.emailServerPropertiesService.createEmailServerProperty(this.emailServerPropertyNew, this.emailServerSelected.id)
+            .subscribe(() => {
+                this.msgs.push({ severity: "info", summary: "Email Server Property created successfully.", detail: "" });
+                this.emailServerPropertyNew = new EmailServerProperties();
+                this.getAllEmailServerProperties();
+            },
+            error => {
+                this.msgs.push({ severity: "error", summary: "Email Server Property creation failed.", detail: error })
+            });
     }
 
     deleteEmailServerProperty(emailServerProperties: EmailServerProperties) {
-        let index: number = 0;
-        for (let emailServerProperty of this.emailServerNew.emailServerProperties) {
-            if (emailServerProperty.propertyName === emailServerProperties.propertyName) {
-                this.emailServerNew.emailServerProperties.splice(index, 1);
-                break;
-            }
-            index++;
-        }
-    }
-
-    deleteEmailServerPropertyUpdate(emailServerProperties: EmailServerProperties) {
-        let index: number = 0;
-        for (let emailServerProperty of this.emailServerSelected.emailServerProperties) {
-            if (emailServerProperty.propertyName === emailServerProperties.propertyName) {
-                this.emailServerSelected.emailServerProperties.splice(index, 1);
-                break;
-            }
-            index++;
-        }
+        this.msgs = [];
+        this.emailServerPropertiesService.deleteEmailServerProperty(emailServerProperties.id)
+            .subscribe(() => {
+                this.msgs.push({ severity: "info", summary: "Email Server Property deleted successfully.", detail: "" });
+                this.emailServerPropertyNew = new EmailServerProperties();
+                this.getAllEmailServerProperties();
+            },
+            error => {
+                this.msgs.push({ severity: "error", summary: "Email Server Property deletion failed.", detail: error })
+            });
     }
 
     createEmailServerSubmit() {
+        this.msgs = [];
         this.emailServerService.createEmailServer(this.emailServerNew)
             .subscribe(() => {
                 this.msgs.push({ severity: "info", summary: "Email Server created successfully.", detail: "" });

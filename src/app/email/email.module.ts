@@ -13,6 +13,8 @@ import { ContactService } from './contact/contact.service';
 import { ContactGroupService } from './contactgroup/contactgroup.service';
 import { EmailServerService } from "./server/emailserver.service";
 import { EmailService } from "./email/email.service";
+import { EmailServerPropertiesService } from "./server/emailserverproperties.service";
+
 import { DataTableModule, SharedModule, GrowlModule, Message, 
          ButtonModule, Header, Footer, DialogModule, SelectItem,
          PanelModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule} from 'primeng/primeng';
@@ -21,6 +23,6 @@ import { DataTableModule, SharedModule, GrowlModule, Message,
     imports: [CommonModule, FormsModule, HttpModule, JsonpModule, MaterialModule.forRoot(), DataTableModule, ButtonModule, 
     DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule],
     declarations: [GroupComponent, ContactComponent, EmailServerComponent, EmailComponent],
-    providers: [ContactService, GroupService, CommonService, ContactGroupService, EmailServerService, EmailService]
+    providers: [ContactService, GroupService, CommonService, ContactGroupService, EmailServerService, EmailService,EmailServerPropertiesService]
 })
 export class EmailModule { }
