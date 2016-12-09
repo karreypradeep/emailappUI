@@ -36,7 +36,7 @@ logout ():  Observable<User>  {
         return this.http.get('user/logout').catch(this.handleError);  
   }
 
- pageLinksAllowedForUser ():  Observable<PageLink>  {
+ pageLinksAllowedForUser ():  Observable<PageLink[]>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });

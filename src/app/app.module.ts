@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { SecurityModule } from './security/security.module';
 import { EmailModule } from './email/email.module';
+import {GlobalService} from './core/global.service';
+import {AuthorizationService} from './core/authorization.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { EmailModule } from './email/email.module';
     SecurityModule,
     EmailModule
   ],
-  providers: [],
+  providers: [GlobalService,AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

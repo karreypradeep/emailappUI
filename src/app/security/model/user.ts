@@ -1,5 +1,6 @@
 export class User{
     public loggedInUserName: string;
-    public roles: string[];
+    public uiRoles: string[];
+    public userType:string;
 
 }

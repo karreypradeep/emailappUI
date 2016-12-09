@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from "./login.service";
 import { User } from '../model/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { GlobalService } from '../../core/global.service';
 
 @Component({
   selector: 'login',
@@ -13,8 +14,8 @@ export class LoginComponent implements OnInit {
   username : string;
   password : string;
   
-  constructor(private loginService: LoginService, private router: Router) { 
-  }
+  constructor(private loginService: LoginService, private router: Router,private globalService: GlobalService) {     
+ }
 
   ngOnInit() {
   }
@@ -24,6 +25,9 @@ export class LoginComponent implements OnInit {
     this.login(this.username,this.password);
   }
 
+  getUserName(){
+    
+  }
 
   login(username: string ,password: string) {
     this.loginService.login(this.username,this.password)
@@ -40,8 +44,10 @@ export class LoginComponent implements OnInit {
     this.loginService.loggedInUser()
             .subscribe((user) => {
                  //console.log('user from server ',user);
-                 sessionStorage.setItem('loggedInUser',JSON.stringify(user));
-                 sessionStorage.setItem('userLoggedIn','true'); 
+                 this.globalService.loggedInUser = user;
+                 //sessionStorage.setItem('loggedInUser',JSON.stringify(user));
+                 this.globalService.userLoggedIn = true;
+                // sessionStorage.setItem('userLoggedIn','true'); 
                  this.pageLinksAllowedForUser();     
             },
             error => {
@@ -54,7 +60,8 @@ export class LoginComponent implements OnInit {
     this.loginService.pageLinksAllowedForUser()
             .subscribe((pageLinks) => {
                  //console.log('pageLinks from user ',pageLinks);
-                 sessionStorage.setItem('pageLinks',JSON.stringify(pageLinks)); 
+                 this.globalService.pageLinks = pageLinks;
+                 //sessionStorage.setItem('pageLinks',JSON.stringify(pageLinks)); 
                  this.router.navigate(['/']);                 
                  this.router.navigate(['dashboard']);         
             },

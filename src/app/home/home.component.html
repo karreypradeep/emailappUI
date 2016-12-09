@@ -9,49 +9,49 @@
     <table >
       <tr>
         <td>
-           <button md-button [routerLink]="['dashboard']" routerLinkActive="active">Dashboard</button>
+           <button md-button [routerLink]="['dashboard']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_DASHBOARD')">Dashboard</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['contacts']" routerLinkActive="active">Contacts</button>
+           <button md-button [routerLink]="['contacts']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_CONTACTS')">Contacts</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['groups']" routerLinkActive="active">Groups</button>
+           <button md-button [routerLink]="['groups']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_GROUPS')">Groups</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['send_email']" routerLinkActive="active">Send Emails</button>
+           <button md-button [routerLink]="['send_email']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_SEND_EMAIL')">Send Emails</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['servers']" routerLinkActive="active">Servers</button>
+           <button md-button [routerLink]="['servers']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_SERVERS')">Servers</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['user_roles']" routerLinkActive="active">User Roles</button>
+           <button md-button [routerLink]="['user_roles']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_USER_ROLES')">User Roles</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['user_groups']" routerLinkActive="active">User Groups</button>
+           <button md-button [routerLink]="['user_groups']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_USER_GROUPS')">User Groups</button>
         </td>
       </tr>
       <tr>
         <td>
-           <button md-button [routerLink]="['user_accounts']" routerLinkActive="active">User Accounts</button>
+           <button md-button [routerLink]="['user_accounts']" routerLinkActive="active" *ngIf="authorizationService.isUserHasRole('ACCESS_USERS')">User Accounts</button>
         </td>
       </tr>
     </table>
   </md-sidenav>
 
   <md-toolbar color="primary">
-    <button class="app-icon-button" (click)="sidenav.toggle()"  >
+    <button class="app-icon-button" (click)="sidenav.toggle()"  *ngIf="userLoggedIn">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button> Email App
     <span class="app-toolbar-filler"></span>
