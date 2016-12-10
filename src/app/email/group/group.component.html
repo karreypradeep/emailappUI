@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-md-6">               
-                <button type="submit" pButton icon="fa fa-search" pButton label="Search" (click)="commonService.searchGroupsByCriteria()"></button>
+                <button type="submit" pButton icon="fa fa-search" pButton label="Search" *ngIf="authorizationService.isUserHasRole('ACCESS_GROUPS')" (click)="commonService.searchGroupsByCriteria()"></button>
                 <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetGroupsBySearchCriteria()"></button>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <footer>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="button" icon="fa fa-plus" pButton label="Create" (click)="createGroupClick()"></button>
+                    <button type="button" icon="fa fa-plus" pButton label="Create" *ngIf="authorizationService.isUserHasRole('CREATE_GROUPS')" (click)="createGroupClick()"></button>
                     <button type="button" icon="fa fa-download" pButton label="Import"></button>
                 </div>
             </div>
@@ -77,11 +77,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-5"></div>
-                    <button *ngIf="!updateGroup" type="button" pButton icon="fa-pencil" (click)="updateGroupClick()" label="Edit"></button>
-                    <button *ngIf="!updateGroup" [disabled]="groupSelected.contactCount > 0" type="submit" pButton icon="fa-trash" (click)="deleteSelectedGroup()"
+                    <button *ngIf="!updateGroup && authorizationService.isUserHasRole('UPDATE_GROUPS')" type="button" pButton icon="fa-pencil" (click)="updateGroupClick()" label="Edit" ></button>
+                    <button *ngIf="!updateGroup && authorizationService.isUserHasRole('UPDATE_GROUPS')" [disabled]="groupSelected.contactCount > 0" type="submit" pButton icon="fa-trash" (click)="deleteSelectedGroup()"
                         label="Delete"></button>
                     <button *ngIf="!updateGroup" type="button" pButton icon="fa-close" (click)="viewDialogCancelClick()" label="Cancel"></button>
-                    <button *ngIf="updateGroup" type="submit" pButton icon="fa-check" (click)="updateGroupSubmit()" label="Submit" [disabled]="!groupForm.form.valid"></button>
+                    <button *ngIf="updateGroup && authorizationService.isUserHasRole('UPDATE_GROUPS')" type="submit" pButton icon="fa-check" (click)="updateGroupSubmit()" label="Submit" [disabled]="!groupForm.form.valid" ></button>
                     <button *ngIf="updateGroup" type="button" pButton icon="fa-close" (click)="dialogUpdateCancelClick()" label="Cancel"></button>
                 </div>
             </div>
@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-5"></div>
-                    <button type="submit" pButton icon="fa-check" (click)="createGroupSubmit()" label="Create" [disabled]="!groupForm.form.valid"></button>
+                    <button type="submit" pButton icon="fa-check" (click)="createGroupSubmit()" label="Create" *ngIf="authorizationService.isUserHasRole('CREATE_GROUPS')" [disabled]="!groupForm.form.valid"></button>
                     <button type="button" pButton icon="fa-close" (click)="createDialogCancelClick()" label="Cancel"></button>
                 </div>
             </div>

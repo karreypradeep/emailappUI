@@ -9,6 +9,7 @@ import { Group } from "../group/group";
 import { GroupService } from "../group/group.service";
 import { CommonService } from "../shared/common.service";
 import { ContactSearchCriteria } from "../contact/contact_search_criteria";
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
     templateUrl: "./contact.component.html",
@@ -27,7 +28,8 @@ export class ContactComponent implements OnInit {
     updateContact: boolean;
     active: boolean = true;
 
-    constructor(private contactService: ContactService, private groupService: GroupService, private commonService: CommonService) { }
+    constructor(private contactService: ContactService, private groupService: GroupService,
+        private commonService: CommonService,private authorizationService : AuthorizationService) { }
 
     ngOnInit() {
         this.commonService.getAllGroups();

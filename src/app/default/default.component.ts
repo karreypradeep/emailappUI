@@ -9,11 +9,15 @@ import { LoginService } from '../security/login/login.service';
 export class DefaultComponent implements OnInit {
 
   constructor(private loginService: LoginService) {
-    this.logout();
+    let userLoggedIn = sessionStorage.getItem('userLoggedIn');
+    if (!userLoggedIn) {
+      this.logout();
+    }
   }
 
 
   logout() {
+    sessionStorage.clear();
     this.loginService.logout().subscribe(() => {
       //window.location.reload();
     },

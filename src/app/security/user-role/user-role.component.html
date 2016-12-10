@@ -8,7 +8,7 @@
       <md-input placeholder="Description" [(ngModel)]="userRoleSearchCriteria.description" class="col-md-5"></md-input>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="searchUserRoles()">Search</button>
+      <button md-raised-button color="primary" (click)="searchUserRoles()" *ngIf="authorizationService.isUserHasRole('ACCESS_USER_ROLES')">Search</button>
       <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
     </md-card-actions>
   </md-card>
@@ -21,7 +21,7 @@
     <footer>
       <div class="row">
         <div class="col-md-12">
-          <button md-raised-button color="primary" (click)="createUserRole()">Create</button>
+          <button md-raised-button color="primary" (click)="createUserRole()" *ngIf="authorizationService.isUserHasRole('CREATE_USER_ROLES')">Create</button>
           <button md-raised-button color="primary">Import</button>
         </div>
       </div>
@@ -78,8 +78,8 @@
       </div>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="submitNewUserRole()">Submit</button>
-      <button md-raised-button color="primary" (click)="deleteNewUserRole()">Delete</button>
+      <button md-raised-button color="primary" (click)="submitNewUserRole()" *ngIf="authorizationService.isUserHasRole('UPDATE_USER_ROLES')">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserRole()" *ngIf="authorizationService.isUserHasRole('DELETE_USER_ROLES')">Delete</button>
       <button md-raised-button color="primary" (click)="backToUserRoles()">Back</button>
     </md-card-actions>
   </md-card>

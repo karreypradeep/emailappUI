@@ -5,9 +5,10 @@ import { UserGroupUserRole } from '../model/user_group_user_role';
 import { UserGroupSearchCriteria } from '../model/user_group_searchcriteria';
 import { UserAccountSearchCriteria } from '../model/UserAccountSearchCriteria';
 import { Message } from 'primeng/primeng';
-import {UserAccount} from '../model/user_account';
+import { UserAccount } from '../model/user_account';
 import { UserAccountService } from "../user-account/user-account.service";
 import { UserAccountUserGroup } from "../model/user_account_user_group";
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
   selector: 'user-account',
@@ -27,7 +28,7 @@ export class UserAccountComponent implements OnInit {
   updateUserAccount: boolean;
   msgs: Message[] = [];
 
-  constructor(private userAccountService: UserAccountService, private userGroupService: UserGroupService) { }
+  constructor(private userAccountService: UserAccountService, private userGroupService: UserGroupService, private authorizationService: AuthorizationService) { }
 
   ngOnInit() {
   }
@@ -66,7 +67,7 @@ export class UserAccountComponent implements OnInit {
       .subscribe((userGroups) => {
         let count = 0;
         for (let i = 0; i < userGroups.length; i++) {
-          if (this.availableUserGroups.indexOf(userGroups[i].groupName)<0) {
+          if (this.availableUserGroups.indexOf(userGroups[i].groupName) < 0) {
             let userAccountUserGroup = new UserAccountUserGroup();
             userAccountUserGroup.userGroup = userGroups[i];
             this.sourceUserAccountUserGroups[count] = userAccountUserGroup;

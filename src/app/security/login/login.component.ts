@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                  this.globalService.loggedInUser = user;
                  //sessionStorage.setItem('loggedInUser',JSON.stringify(user));
                  this.globalService.userLoggedIn = true;
-                // sessionStorage.setItem('userLoggedIn','true'); 
+                 sessionStorage.setItem('userLoggedIn','true'); 
                  this.pageLinksAllowedForUser();     
             },
             error => {

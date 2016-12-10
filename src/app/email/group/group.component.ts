@@ -3,6 +3,7 @@ import { Message } from 'primeng/primeng';
 import { GroupService } from "./group.service";
 import { Group } from "./group";
 import { CommonService } from "../shared/common.service";
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
     templateUrl: "./group.component.html"
@@ -19,7 +20,8 @@ export class GroupComponent {
     displayViewDialog: boolean;
     active: boolean = true;
 
-    constructor(private groupService: GroupService, private commonService: CommonService) { }
+    constructor(private groupService: GroupService, private commonService: CommonService
+        , private authorizationService: AuthorizationService) { }
 
     onRowSelect(event: any) {
         this.groupSelected = event.data;

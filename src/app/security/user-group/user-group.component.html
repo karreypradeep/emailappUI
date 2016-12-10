@@ -8,7 +8,7 @@
       <md-input placeholder="Description" [(ngModel)]="userGroupSearchCriteria.description" class="col-md-5"></md-input>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="searchUserGroups()">Search</button>
+      <button md-raised-button color="primary" (click)="searchUserGroups()" *ngIf="authorizationService.isUserHasRole('ACCESS_USER_GROUPS')">Search</button>
       <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
     </md-card-actions>
   </md-card>
@@ -21,7 +21,7 @@
     <footer>
       <div class="row">
         <div class="col-md-12">
-          <button md-raised-button color="primary" (click)="createUserGroup()">Create</button>
+          <button md-raised-button color="primary" (click)="createUserGroup()" *ngIf="authorizationService.isUserHasRole('CREATE_USER_GROUPS')">Create</button>
           <button md-raised-button color="primary">Import</button>
         </div>
       </div>
@@ -51,8 +51,8 @@
       </div>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="submitNewUserGroup()">Submit</button>
-      <button md-raised-button color="primary" (click)="deleteNewUserGroup()">Delete</button>
+      <button md-raised-button color="primary" (click)="submitNewUserGroup()" *ngIf="authorizationService.isUserHasRole('UPDATE_USER_GROUPS')">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserGroup()" *ngIf="authorizationService.isUserHasRole('DELETE_USER_GROUPS')">Delete</button>
       <button md-raised-button color="primary" (click)="backToUserGroups()">Back</button>
     </md-card-actions>
   </md-card>

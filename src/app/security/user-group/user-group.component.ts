@@ -7,6 +7,7 @@ import { UserGroupUserRole } from '../model/user_group_user_role';
 import { UserGroupSearchCriteria } from '../model/user_group_searchcriteria';
 import { UserRoleSearchCriteria } from '../model/user.role.search.criteria';
 import { Message } from 'primeng/primeng';
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
   selector: 'user-group',
@@ -26,7 +27,7 @@ export class UserGroupComponent implements OnInit {
   updateUserGroup: boolean;
   msgs: Message[] = [];
 
-  constructor(private userGroupService: UserGroupService, private userRoleService: UserRoleService) { }
+  constructor(private userGroupService: UserGroupService, private userRoleService: UserRoleService, private authorizationService: AuthorizationService) { }
 
   ngOnInit() {
   }

@@ -37,7 +37,8 @@
             </div>
             <div class="col-md-12">
                 <div class="col-md-5"></div>
-                <button type="submit" [disabled]="!contactForm.form.valid" pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria()"></button>
+                <button type="submit" *ngIf="authorizationService.isUserHasRole('ACCESS_CONTACTS')" [disabled]="!contactForm.form.valid"
+                    pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria()"></button>
                 <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetContactsBySearchCriteria()"></button>
             </div>
         </div>
@@ -53,7 +54,8 @@
         <footer>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="button" icon="fa fa-plus" pButton label="Create" (click)="createContactClick()"></button>
+                    <button type="button" icon="fa fa-plus" *ngIf="authorizationService.isUserHasRole('CREATE_CONTACTS')" pButton label="Create"
+                        (click)="createContactClick()"></button>
                     <button type="button" pButton icon="fa fa-download" label="Import"></button>
                 </div>
             </div>
@@ -137,8 +139,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-5"></div>
-                    <button *ngIf="!updateContact" type="button" pButton icon="fa-pencil" (click)="updateContactClick()" label="Edit"></button>
-                    <button *ngIf="!updateContact" type="submit" pButton icon="fa-trash" (click)="deleteSelectedContact()" label="Delete"></button>
+                    <button *ngIf="!updateContact && authorizationService.isUserHasRole('UPDATE_CONTACTS')" type="button" pButton icon="fa-pencil" (click)="updateContactClick()"
+                        label="Edit"></button>
+                    <button *ngIf="!updateContact && authorizationService.isUserHasRole('DELETE_CONTACTS')" type="submit" pButton icon="fa-trash" (click)="deleteSelectedContact()"
+                        label="Delete"></button>
                     <button *ngIf="!updateContact" type="button" pButton icon="fa-close" (click)="viewDialogCancelClick()" label="Cancel"></button>
                 </div>
             </div>
@@ -168,7 +172,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-5"></div>
-                    <button *ngIf="updateContact" type="submit" pButton icon="fa-check" (click)="updateContactSubmit()" label="Submit" [disabled]="!contactForm.form.valid"></button>
+                    <button *ngIf="updateContact && authorizationService.isUserHasRole('CREATE_CONTACTS')" type="submit" pButton icon="fa-check" (click)="updateContactSubmit()" label="Submit"
+                        [disabled]="!contactForm.form.valid"></button>
                     <button *ngIf="updateContact" type="button" pButton icon="fa-close" (click)="dialogUpdateCancelClick()" label="Cancel"></button>
                 </div>
             </div>
@@ -229,7 +234,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-5"></div>
-                <button type="submit" pButton icon="fa-check" (click)="createContactSubmit()" label="Create" [disabled]="!contactForm.form.valid"></button>
+                <button type="submit" pButton icon="fa-check" *ngIf="authorizationService.isUserHasRole('CREATE_CONTACTS')" (click)="createContactSubmit()" label="Create" [disabled]="!contactForm.form.valid"></button>
                 <button type="button" pButton icon="fa-close" (click)="createDialogCancelClick()" label="Cancel"></button>
             </div>
         </div>

@@ -6,7 +6,7 @@ import { EmailServerService } from "./emailserver.service";
 import { EmailServerProperties } from "./emailserver.properties";
 import { EmailServerPropertyValueTypeConstant } from "./emailServerPropertyValueTypeConstant";
 import { EmailServerPropertiesService } from "./emailserverproperties.service";
-
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
     templateUrl: "./emailserver.component.html"
@@ -28,7 +28,8 @@ export class EmailServerComponent implements OnInit {
     emailServerPropertyTypes: SelectItem[];
     emailServerPropertyNew: EmailServerProperties;
 
-    constructor(private emailServerService: EmailServerService, private emailServerPropertiesService: EmailServerPropertiesService) { }
+    constructor(private emailServerService: EmailServerService,
+        private emailServerPropertiesService: EmailServerPropertiesService, private authorizationService: AuthorizationService) { }
 
     ngOnInit() {
         this.getAllEmailServers();

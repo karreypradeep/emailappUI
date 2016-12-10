@@ -4,6 +4,7 @@ import { AuthoritiesByModuleResource } from "../model/authorities.by.module";
 import { UserRole } from '../model/user.role';
 import { UserRoleSearchCriteria } from '../model/user.role.search.criteria';
 import { Message } from 'primeng/primeng';
+import { AuthorizationService } from '../../core/authorization.service';
 
 @Component({
   selector: 'user-role',
@@ -20,7 +21,7 @@ export class UserRoleComponent implements OnInit {
   private updateUserRole: boolean;
   msgs: Message[] = [];
 
-  constructor(private userRoleService: UserRoleService) { }
+  constructor(private userRoleService: UserRoleService, private authorizationService: AuthorizationService) { }
 
   ngOnInit() {
     this.getAuthoritiesByModule();
