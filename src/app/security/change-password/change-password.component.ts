@@ -29,6 +29,7 @@ export class ChangePasswordComponent implements OnInit {
     this.msgs = [];
     this.userAccountService.changeUserPassword(this.userAccountChangePasswordResource)
       .subscribe(() => {
+        this.userAccountChangePasswordResource = new UserAccountChangePasswordResource();
         this.msgs.push({ severity: "info", summary: "Password changed successfully.", detail: "" });
       },
       error => {

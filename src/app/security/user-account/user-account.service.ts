@@ -55,7 +55,7 @@ updateUserAccount (userAccount: UserAccount):  Observable<UserAccount>  {
 changeUserPassword (userAccountChangePasswordResource: UserAccountChangePasswordResource):  Observable<UserAccount>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.put('changepassword' , JSON.stringify(userAccountChangePasswordResource), { headers: headers })
+        return this.http.post('userAccounts/changepassword' , JSON.stringify(userAccountChangePasswordResource), { headers: headers })
             .map((res: Response)  => { return; })
             .catch(this.handleError);  
   }
