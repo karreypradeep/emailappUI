@@ -12,7 +12,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-md-12">
-					<button type="button" icon="fa fa-plus" pButton label="Create" *ngIf="authorizationService.isUserHasRole('ACCESS_SERVERS')" (click)="createEmailServerClick()"></button>
+					<button type="button" icon="fa fa-plus" pButton label="Create" *ngIf="authorizationService.isUserHasRole('UI_ACCESS_SERVERS')" (click)="createEmailServerClick()"></button>
 					<button type="button" pButton icon="fa fa-download" label="Import"></button>
 				</div>
 			</div>
@@ -153,10 +153,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="col-md-5"></div>
-							<button *ngIf="!updateEmailServer && authorizationService.isUserHasRole('UPDATE_SERVERS')" type="button" pButton icon="fa-pencil" (click)="updateEmailServerClick()" label="Edit"></button>
-							<button *ngIf="!updateEmailServer && authorizationService.isUserHasRole('DELETE_SERVERS')" type="submit" pButton icon="fa-trash" (click)="deleteEmailServerCancleClick()" label="Delete"></button>
+							<button *ngIf="!updateEmailServer && authorizationService.isUserHasRole('UI_UPDATE_SERVERS')" type="button" pButton icon="fa-pencil" (click)="updateEmailServerClick()" label="Edit"></button>
+							<button *ngIf="!updateEmailServer && authorizationService.isUserHasRole('UI_DELETE_SERVERS')" type="submit" pButton icon="fa-trash" (click)="deleteEmailServerCancleClick()" label="Delete"></button>
 							<button *ngIf="!updateEmailServer" type="button" pButton icon="fa-close" (click)="viewEmailServerCancleClick()" label="Cancel"></button>
-							<button *ngIf="updateEmailServer && authorizationService.isUserHasRole('UPDATE_SERVERS')" type="submit" pButton icon="fa-check" (click)="updateEmailServerSubmit()" label="Submit"
+							<button *ngIf="updateEmailServer && authorizationService.isUserHasRole('UI_UPDATE_SERVERS')" type="submit" pButton icon="fa-check" (click)="updateEmailServerSubmit()" label="Submit"
 								[disabled]="!contactForm.form.valid"></button>
 							<button *ngIf="updateEmailServer" type="button" pButton icon="fa-close" (click)="updateEmailServerCancel()" label="Cancel"></button>
 						</div>
@@ -198,7 +198,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<button type="button" pButton icon="fa-check" (click)="createEmailServerProperty(emailServerPropertyNew)" label="Add"
-										[disabled]="!emailServerPropertiesUpdateForm.form.valid" *ngIf="authorizationService.isUserHasRole('CREATE_SERVERS')"></button>
+										[disabled]="!emailServerPropertiesUpdateForm.form.valid" *ngIf="authorizationService.isUserHasRole('UI_CREATE_SERVERS')"></button>
 								</div>
 							</div>
 						</div>
@@ -212,7 +212,7 @@
 							<p-column styleClass="col-button">
 								<template let-emailServerProperties="rowData" pTemplate type="body">
 									<button type="button" [disabled]="!updateEmailServer" pButton icon="fa-trash" (click)="deleteEmailServerProperty(emailServerProperties)"
-										label="Delete" *ngIf="authorizationService.isUserHasRole('DELETE_SERVERS')"></button></template>
+										label="Delete" *ngIf="authorizationService.isUserHasRole('UI_DELETE_SERVERS')"></button></template>
 							</p-column>
 						</p-dataTable>
 					</form>
@@ -325,7 +325,7 @@
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-5"></div>
-				<button type="submit" pButton icon="fa-check" (click)="createEmailServerSubmit()" label="Create" [disabled]="!contactForm.form.valid" *ngIf="authorizationService.isUserHasRole('CREATE_SERVERS')"></button>
+				<button type="submit" pButton icon="fa-check" (click)="createEmailServerSubmit()" label="Create" [disabled]="!contactForm.form.valid" *ngIf="authorizationService.isUserHasRole('UI_CREATE_SERVERS')"></button>
 				<button type="button" pButton icon="fa-close" (click)="createEmailServerCancleClick()" label="Cancel"></button>
 			</div>
 		</div>

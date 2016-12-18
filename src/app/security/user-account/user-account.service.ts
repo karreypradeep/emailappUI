@@ -4,6 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 import {UserAccountTypeConstant} from '../model/UserAccountTypeConstant';
 import {UserAccountSearchCriteria} from '../model/UserAccountSearchCriteria';
 import {UserAccount} from '../model/user_account';
+import { UserAccountChangePasswordResource } from '../model/user_account_change_password_resource';
 
 @Injectable()
 export class UserAccountService {
@@ -47,6 +48,14 @@ updateUserAccount (userAccount: UserAccount):  Observable<UserAccount>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.put('userAccounts' + "/" + userAccount.objectId, JSON.stringify(userAccount), { headers: headers })
+            .map((res: Response)  => { return; })
+            .catch(this.handleError);  
+  }
+
+changeUserPassword (userAccountChangePasswordResource: UserAccountChangePasswordResource):  Observable<UserAccount>  {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('changepassword' , JSON.stringify(userAccountChangePasswordResource), { headers: headers })
             .map((res: Response)  => { return; })
             .catch(this.handleError);  
   }

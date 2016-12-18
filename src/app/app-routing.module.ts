@@ -11,6 +11,7 @@ import { GroupComponent } from './email/group/group.component';
 import { ContactComponent } from './email/contact/contact.component';
 import { EmailComponent } from './email/email/email.component';
 import { EmailServerComponent } from './email/server/emailserver.component';
+import {ChangePasswordComponent} from './security/change-password';
 
 const routes: Routes = [ 
   {path:'',component:DefaultComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path:'user_accounts',component:UserAccountComponent},
   {path:'user_groups',component:UserGroupComponent},
   {path:'dashboard',component:DashboardComponent},
-  {path:'appLogin',component:LoginComponent}
+  {path:'appLogin',component:LoginComponent},
+  {path:'changePassword',component:ChangePasswordComponent}
 ];
 
 @NgModule({

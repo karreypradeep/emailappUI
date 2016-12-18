@@ -8,6 +8,7 @@ import { UserRoleService } from './user-role/user-role.service';
 import { UserGroupComponent } from './user-group/user-group.component';
 import { UserGroupService } from './user-group/user-group.service';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UserAccountService } from './user-account/user-account.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
@@ -20,7 +21,8 @@ import { DataTableModule, SharedModule, GrowlModule, Message,
     UserRoleComponent,
     UserAccountComponent,
     UserGroupComponent,
-    LoginComponent  
+    LoginComponent,
+    ChangePasswordComponent  
   ],
   imports: [
     CommonModule,

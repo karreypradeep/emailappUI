@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
+changePassword() {
+    this.router.navigate(['changePassword']);
+  }
+
 
   get pageLinks(): PageLink[] {
     /*this._pageLinks = [];

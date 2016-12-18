@@ -8,7 +8,7 @@
       <md-input placeholder="Email" [(ngModel)]="userAccountSearchCriteria.email" class="col-md-5"></md-input>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="searchUserAccounts()" *ngIf="authorizationService.isUserHasRole('ACCESS_USERS')">Search</button>
+      <button md-raised-button color="primary" (click)="searchUserAccounts()" *ngIf="authorizationService.isUserHasRole('UI_USERS_ACCESS')">Search</button>
       <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
     </md-card-actions>
   </md-card>
@@ -21,7 +21,7 @@
     <footer>
       <div class="row">
         <div class="col-md-12">
-          <button md-raised-button color="primary" (click)="createUserAccount()" *ngIf="authorizationService.isUserHasRole('CREATE_USERS')">Create</button>
+          <button md-raised-button color="primary" (click)="createUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_CREATE')">Create</button>
           <button md-raised-button color="primary">Import</button>
         </div>
       </div>
@@ -63,8 +63,8 @@
       </div>
     </md-card-content>
     <md-card-actions class="center">
-      <button md-raised-button color="primary" (click)="submitNewUserAccount()" *ngIf="authorizationService.isUserHasRole('UPDATE_USERS')">Submit</button>
-      <button md-raised-button color="primary" (click)="deleteNewUserAccount()" *ngIf="authorizationService.isUserHasRole('DELETE_USERS')">Delete</button>
+      <button md-raised-button color="primary" (click)="submitNewUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_UPDATE')">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_DELETE')">Delete</button>
       <button md-raised-button color="primary" (click)="backToUserAccounts()">Back</button>
     </md-card-actions>
   </md-card>
